@@ -19,7 +19,7 @@ export default function Footer() {
               Every piece is handcrafted with care and love. We believe in the beauty of handmade things and the joy they bring.
             </p>
             <div className="flex gap-3 mt-4">
-              <a href="#" className="w-9 h-9 bg-blush rounded-full flex items-center justify-center hover:bg-rose hover:text-white text-plum transition-colors">
+              <a href="https://www.instagram.com/dhaarus_handmade_hub?utm_source=qr&igsh=MTZidmc4bnBicnhjZQ==" className="w-9 h-9 bg-blush rounded-full flex items-center justify-center hover:bg-rose hover:text-white text-plum transition-colors">
                 <Instagram size={16} />
               </a>
               <a href="#" className="w-9 h-9 bg-blush rounded-full flex items-center justify-center hover:bg-sage hover:text-white text-plum transition-colors">
