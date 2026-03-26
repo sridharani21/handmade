@@ -1,6 +1,8 @@
+export const dynamic = 'force-dynamic'
+export const revalidate = 0
+
 import { supabase } from '@/lib/supabase'
 import Link from 'next/link'
-import Image from 'next/image'
 import ProductCard from '@/components/ProductCard'
 import { ArrowRight, Sparkles, Truck, Shield, Heart } from 'lucide-react'
 
@@ -20,26 +22,21 @@ export default async function HomePage() {
     <div className="animate-fade-in">
       {/* Hero */}
       <section className="relative overflow-hidden bg-gradient-to-br from-cream via-blush/30 to-mint/20 py-16 sm:py-24">
-        {/* Decorative blobs */}
         <div className="absolute top-10 left-10 w-40 h-40 bg-rose/20 rounded-full blur-3xl" />
         <div className="absolute bottom-10 right-10 w-56 h-56 bg-mint/30 rounded-full blur-3xl" />
         <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-96 h-96 bg-butter/30 rounded-full blur-3xl" />
-
         <div className="relative max-w-7xl mx-auto px-4 sm:px-6 text-center">
           <div className="inline-flex items-center gap-2 bg-white/80 backdrop-blur rounded-full px-4 py-2 mb-6 border border-blush shadow-sm">
             <Sparkles size={14} className="text-plum" />
             <span className="text-sm font-cute font-semibold text-plum">Handcrafted with love 💕</span>
           </div>
-
           <h1 className="font-display text-5xl sm:text-6xl lg:text-7xl font-bold text-plum mb-6 leading-tight">
             Unique Handmade
             <span className="block italic text-mauve">Treasures for You</span>
           </h1>
-
           <p className="text-lg text-gray-500 font-cute max-w-xl mx-auto mb-8 leading-relaxed">
-            Every piece is crafted by hand with care, love, and the finest materials. Find something special for yourself or someone you adore.
+            Every piece is crafted by hand with care, love, and the finest materials.
           </p>
-
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <Link href="/products" className="btn-primary inline-flex items-center gap-2 text-lg px-8 py-4 animate-float">
               Shop Now 🌸 <ArrowRight size={18} />
@@ -111,11 +108,6 @@ export default async function HomePage() {
       {/* Banner */}
       <section className="page-container">
         <div className="bg-gradient-to-r from-plum via-mauve to-rose rounded-4xl p-8 sm:p-12 text-white text-center relative overflow-hidden">
-          <div className="absolute inset-0 opacity-10">
-            {['🌸','✨','💎','🎀','🌷','💕'].map((e, i) => (
-              <span key={i} className="absolute text-4xl" style={{ top: `${20 + (i * 12)}%`, left: `${5 + (i * 16)}%`, opacity: 0.6 }}>{e}</span>
-            ))}
-          </div>
           <div className="relative">
             <h2 className="font-display text-3xl sm:text-4xl font-bold mb-3">Looking for a Perfect Gift? 🎁</h2>
             <p className="font-cute text-white/80 mb-6 text-lg">Explore our curated gift sets — handcrafted with extra love!</p>

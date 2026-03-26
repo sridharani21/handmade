@@ -1,3 +1,6 @@
+export const dynamic = 'force-dynamic'
+export const revalidate = 0
+
 import { supabase } from '@/lib/supabase'
 import ProductCard from '@/components/ProductCard'
 import ProductsFilter from './ProductsFilter'
@@ -9,7 +12,11 @@ async function getProducts(searchParams) {
     .eq('is_active', true)
 
   if (searchParams.category) {
-    const { data: cat } = await supabase.from('categories').select('id').eq('slug', searchParams.category).single()
+    const { data: cat } = await supabase
+      .from('categories')
+      .select('id')
+      .eq('slug', searchParams.category)
+      .single()
     if (cat) query = query.eq('category_id', cat.id)
   }
   if (searchParams.featured === 'true') query = query.eq('is_featured', true)
@@ -30,14 +37,19 @@ async function getCategories() {
 }
 
 export default async function ProductsPage({ searchParams }) {
-  const [products, categories] = await Promise.all([getProducts(searchParams), getCategories()])
+  const [products, categories] = await Promise.all([
+    getProducts(searchParams),
+    getCategories(),
+  ])
+
+  const activeCategory = categories.find(c => c.slug === searchParams.category)
 
   return (
     <div className="page-container">
       <div className="mb-8">
         <h1 className="section-title">
           {searchParams.category
-            ? categories.find(c => c.slug === searchParams.category)?.name || 'Products'
+            ? `${activeCategory?.emoji || ''} ${activeCategory?.name || 'Products'}`
             : searchParams.featured === 'true' ? '✨ Featured Picks'
             : searchParams.q ? `Search: "${searchParams.q}"`
             : '🛍️ Shop All'}

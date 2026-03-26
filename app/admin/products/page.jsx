@@ -24,17 +24,17 @@ export default function AdminProducts() {
   const [uploading, setUploading] = useState(false)
   const [deleteConfirm, setDeleteConfirm] = useState(null)
 
-  useEffect(() => { fetchData() }, [])
+ useEffect(() => { fetchData() }, [])
 
-  async function fetchData() {
-    const [{ data: prods }, { data: cats }] = await Promise.all([
-      supabase.from('products').select('*, categories(name, emoji)').order('created_at', { ascending: false }),
-      supabase.from('categories').select('*').order('display_order')
-    ])
-    setProducts(prods || [])
-    setCategories(cats || [])
-    setLoading(false)
-  }
+async function fetchData() {
+  const [{ data: prods }, { data: cats }] = await Promise.all([
+    supabase.from('products').select('*, categories(name, emoji)').order('created_at', { ascending: false }),
+    supabase.from('categories').select('*').eq('is_deleted', false).order('display_order') // only active categories
+  ])
+  setProducts(prods || [])
+  setCategories(cats || [])
+  setLoading(false)
+}
 
   function openNew() {
     setEditing(null)
